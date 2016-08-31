@@ -12,6 +12,7 @@
 		636C25841D77187300C13898 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636C25821D77187300C13898 /* Main.storyboard */; };
 		636C25861D77187300C13898 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 636C25851D77187300C13898 /* Assets.xcassets */; };
 		636C25891D77187300C13898 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636C25871D77187300C13898 /* LaunchScreen.storyboard */; };
+		636C25941D77190F00C13898 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C25931D77190F00C13898 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		636C25851D77187300C13898 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		636C25881D77187300C13898 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		636C258A1D77187300C13898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		636C25931D77190F00C13898 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,39 @@
 		636C257D1D77187300C13898 /* CrapsLearner */ = {
 			isa = PBXGroup;
 			children = (
-				636C257E1D77187300C13898 /* AppDelegate.swift */,
-				636C25801D77187300C13898 /* ViewController.swift */,
+				636C25901D77189700C13898 /* model */,
+				636C25911D7718A000C13898 /* view */,
+				636C25921D7718AC00C13898 /* controller */,
 				636C25821D77187300C13898 /* Main.storyboard */,
+				636C257E1D77187300C13898 /* AppDelegate.swift */,
 				636C25851D77187300C13898 /* Assets.xcassets */,
 				636C25871D77187300C13898 /* LaunchScreen.storyboard */,
 				636C258A1D77187300C13898 /* Info.plist */,
 			);
 			path = CrapsLearner;
+			sourceTree = "<group>";
+		};
+		636C25901D77189700C13898 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				636C25931D77190F00C13898 /* Player.swift */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		636C25911D7718A000C13898 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				636C25801D77187300C13898 /* ViewController.swift */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		636C25921D7718AC00C13898 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				636C25811D77187300C13898 /* ViewController.swift in Sources */,
+				636C25941D77190F00C13898 /* Player.swift in Sources */,
 				636C257F1D77187300C13898 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
