@@ -13,6 +13,9 @@
 		636C25861D77187300C13898 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 636C25851D77187300C13898 /* Assets.xcassets */; };
 		636C25891D77187300C13898 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636C25871D77187300C13898 /* LaunchScreen.storyboard */; };
 		636C25941D77190F00C13898 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C25931D77190F00C13898 /* Player.swift */; };
+		636C25961D771C3700C13898 /* DecisionMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C25951D771C3700C13898 /* DecisionMaker.swift */; };
+		636C25981D77281200C13898 /* CrapsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C25971D77281200C13898 /* CrapsEngine.swift */; };
+		6393E2DC1D77B38300526463 /* BettingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393E2DB1D77B38300526463 /* BettingOptions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		636C25881D77187300C13898 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		636C258A1D77187300C13898 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		636C25931D77190F00C13898 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		636C25951D771C3700C13898 /* DecisionMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionMaker.swift; sourceTree = "<group>"; };
+		636C25971D77281200C13898 /* CrapsEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrapsEngine.swift; sourceTree = "<group>"; };
+		6393E2DB1D77B38300526463 /* BettingOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BettingOptions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				636C25931D77190F00C13898 /* Player.swift */,
+				636C25951D771C3700C13898 /* DecisionMaker.swift */,
+				636C25971D77281200C13898 /* CrapsEngine.swift */,
+				6393E2DB1D77B38300526463 /* BettingOptions.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -163,9 +172,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6393E2DC1D77B38300526463 /* BettingOptions.swift in Sources */,
+				636C25961D771C3700C13898 /* DecisionMaker.swift in Sources */,
 				636C25811D77187300C13898 /* ViewController.swift in Sources */,
 				636C25941D77190F00C13898 /* Player.swift in Sources */,
 				636C257F1D77187300C13898 /* AppDelegate.swift in Sources */,
+				636C25981D77281200C13898 /* CrapsEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +329,7 @@
 				636C258F1D77187300C13898 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
