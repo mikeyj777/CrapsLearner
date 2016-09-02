@@ -108,7 +108,7 @@ class DecisionMaker {
             
             scale = 1/_ratio*_betMultiplier
             
-            _bets=["pass line": _player.bets["pass line"],
+            _bets=["pass line": _player.bets["pass line"]!,
                   "pass line odds": 0,
                   "come": 0,
                   "come odds": 0,
