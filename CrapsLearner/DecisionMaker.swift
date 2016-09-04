@@ -16,7 +16,7 @@ class DecisionMaker {
     
     private var _oddsMultiplier:Double
     
-    private var _ratio:Double
+    private var _ratio:Double = 0
     
     private var _rollCount:Int
     
@@ -24,9 +24,9 @@ class DecisionMaker {
     
     private var _minRollsToMakeDecisions:Int
     
-    private var _bets:[String:Double]
+    private var _bets:[String:Double]?
     
-    private var _player:Player
+    private var _player:Player?
     
     var sensitivity:Double {
         return _sensitivity
@@ -90,16 +90,16 @@ class DecisionMaker {
     func think() {
         
         var scale:Double = 1
-        let minBet:Double = _player.minBet
-        let minSmallBet:Double = _player.minSmallBet
+        let minBet:Double = _player!.minBet
+        let minSmallBet:Double = _player!.minSmallBet
         
         var passLine:Bool = true
         
-        if (_player.bets["pass line"] == 0) {
+        if (_player!.bets["pass line"] == 0) {
             passLine = false
         }
         
-        _bets = _player.bets
+        _bets = _player!.bets
         
         switch true {
             
@@ -108,7 +108,7 @@ class DecisionMaker {
             
             scale = 1/_ratio*_betMultiplier
             
-            _bets=["pass line": _player.bets["pass line"]!,
+            _bets=["pass line": _player!.bets["pass line"]!,
                   "pass line odds": 0,
                   "come": 0,
                   "come odds": 0,
@@ -167,7 +167,7 @@ class DecisionMaker {
                    "pass line odds": passLine ? scale * minBet * _oddsMultiplier : 0,
                    "come": scale * minBet,
                    "come odds": scale * minBet * _oddsMultiplier,
-                   "don't pass": passLine ? 0 : _player.bets["don't pass"],
+                   "don't pass": passLine ? 0 : _player!.bets["don't pass"]!,
                    "don't pass odds": 0,
                    "don't come": scale * minBet,
                    "don't come odds": scale*minBet * _oddsMultiplier,

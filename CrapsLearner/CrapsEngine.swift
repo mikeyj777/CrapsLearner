@@ -15,6 +15,8 @@ class CrapsEngine {
     
     private var _onOff:Bool = false
     
+    private var _dontPassOnOff:Bool = false
+    
     private var _comeOnOff:Bool = false
     
     private var _dontComeOnOff:Bool = false
@@ -76,9 +78,30 @@ class CrapsEngine {
         
         switch _rollVal {
         case 7:
-            
             _outcomes["pass line"] = _onOff ? -1.0 : 1.0
-            _outcomes["don't pass"] = _onOff ? 1.0 : -1.0-1
+            _outcomes["don't pass"] = _onOff ? 1.0 : -1.0
+            
+            _outcomes["come"] = _onOff ? -1.0 : 1.0
+            _outcomes["don't come"] = _onOff ? 1.0 : -1.0
+            
+            switch _rollVal {
+            case 4,10:
+                _outcomes["dont come odds"] = 1/2
+                _outcomes["dont pass odds"] = 1/2
+                break
+            case 5,9:
+                _outcomes["dont come odds"] = 2/3
+                _outcomes["dont pass odds"] = 2/3
+                break
+            case 6,8:
+                _outcomes["dont come odds"] = 5/6
+                _outcomes["dont pass odds"] = 5/6
+                break
+            default:
+                break
+                
+            }
+            
             break
         case 11:
             _outcomes["eleven"] = 1
@@ -95,43 +118,56 @@ class CrapsEngine {
                 _outcomes["don't come"] = 1
                 _outcomes["don't pass"] = 1
             }
-        case 4,5,6,8,9,10:
-            _onOff = true
-            _point = _rollVal
-            if (_comeOnOff) {
-                for num in _comePoints {
-                    if (num == _rollVal) {
-                        _comePoints.removeAtIndex(_comePoints.indexOf(_rollVal)!)
-                        if (_comePoints.count == 0) {
-                            _comeOnOff = false
-                        }
-                        _outcomes["come"] = 1
-                        switch _rollVal {
-                        case 4,10:
-                            _outcomes["come odds"] = 2
-                            break
-                        case 5,9:
-                            _outcomes["come odds"] = 1.5
-                            break
-                        case 6,8:
-                            _outcomes["come odds"] = 1.2
-                            break
-                        default:
-                            break
+            break
+        case 4,5,6,7,8,9,10:
+            
+            for (key, bet) in _outcomes {
+                
+                if ((key.rangeOfString("pass") != nil) || (key.rangeOfString("come") != nil)) {
+                    if ((key.rangeOfString("come") != nil) &&
+                        (_comePoints.count != 0)) {
                         
+                        for point in _comePoints {
+                            checkAgainstPossiblePoint(point, key)
                         }
+                            
+                    } else {
+                        if (_point > 0) {
+                            checkAgainstPossiblePoint(_point, key)
+                        } else {
+                            if (_rollVal != 7) {
+                                _point = _rollVal
+                                _onOff = true
+                            }
+                        }
+                        
                         
                     }
+                        
                 }
             }
-            if (_makeComeBet) {
-                _makeComeBet = false
-                _comePoints.append(_rollVal)
+            
+            if (_rollVal == 7) {
+                otherSevenActivities()
             }
             
-            
-            
             break
+            
+//            if (_dontComeOnOff) {
+//                for (i,num) in _dontComePoints.enumerate().reverse() {
+//                    if (num == _rollVal) {
+//                        _dontComePoints.removeAtIndex(i)
+//                        if (_dontComePoints.count == 0) {
+//                            _dontComeOnOff = false
+//                        }
+//                        _outcomes["dont come"] = -1
+//                        _outcomes["dont come odds"] = -1
+//                        
+//                    }
+//                }
+//            }
+        
+            
             /*
                 _bets=["pass line": 0,
                     "pass line odds": 0,
@@ -167,6 +203,61 @@ class CrapsEngine {
         
     }
     
+    func checkAgainstPossiblePoint(point: Int, key:String) {
+        
+        if ((_rollVal == 7) || (_rollVal == point)) {
+            if (key.rangeOfString("don't") != nil) {
+                _outcomes[key] = _rollVal == 7 ? 1 : -1
+            } else {
+                _outcomes[key] = _rollVal == 7 ? -1 : 1
+            }
+            
+            var multiplier:Double = 1
+            
+            switch _rollVal {
+            case 4,10:
+                multiplier = 2
+                break
+            case 5,9:
+                multiplier = 1.5
+                break
+            case 6,8:
+                multiplier = 1.2
+                break
+            default:
+                break
+            }
+            
+            if (key.rangeOfString("don't") != nil) {
+                multiplier = 1/multiplier
+            }
+            
+            if (_outcomes[key] > 0) {
+                _outcomes[key] *= multiplier
+            }
+            
+        }
+
+        if (key.rangeOfString("come") != nil) {
+            if (key.rangeOfString("don't'") != nil) {
+
+            }
+        }
+        
+    }
+    
+    func otherSevenActivities() {
+        _onOff = false
+        
+        _dontPassOnOff = false
+        
+        _comeOnOff = false
+        
+        _dontComeOnOff = false
+        
+        _outcomes["seven"] = 1
+    }
+    
     func setOneTimeBetsToNegOne() {
         
         _outcomes["craps"] = -1
@@ -177,16 +268,7 @@ class CrapsEngine {
     
     func checkHardWaysAndBuys() {
         
-        switch _rollVal {
-        case 4,5,6,8,9,10:
-            _outcomes["buy " + String(_rollVal)] = 1
-            if (_dice[0]==_dice[1]){
-                _outcomes["hard ways " + String(_dice[0] * 2)] = 1
-            }
-            break
-        default:
-            break
-        }
+
         
     }
     
