@@ -18,7 +18,9 @@ class Player {
     
     private var _bets:[String:Double]
     
-    //private var _bettingOptions = BettingOptions()
+    private var _dontComePoints = [Int]()
+    
+    private var _comePoints = [Int]()
     
     var minBet:Double {
         return _minBet
@@ -34,6 +36,70 @@ class Player {
     
     var minSmallBet:Double {
         return _minSmallBet
+    }
+    
+    var dontComePoints:[Int] {
+        return _dontComePoints
+    }
+    
+    var comePoints:[Int] {
+        return _comePoints
+    }
+    
+    func addComePoint(point:Int) {
+        var pointExists:Bool = false
+        for comePoint in _comePoints {
+            if (comePoint == point) {
+                pointExists = true
+            }
+        }
+        
+        if !pointExists {
+            _comePoints.append(point)
+        }
+    }
+    
+    func addDontComePoint(point:Int) {
+        
+        var pointExists:Bool = false
+        for dontComePoint in _dontComePoints {
+            if (dontComePoint == point) {
+                pointExists = true
+            }
+        }
+        
+        if !pointExists {
+            _dontComePoints.append(point)
+        }
+        
+    }
+    
+    func clearComePoints() {
+        _comePoints.removeAll()
+    }
+    
+    func clearDontComePoints() {
+        _dontComePoints.removeAll()
+    }
+    
+    func clearComePoint(point:Int) {
+        
+        for (i,num) in _comePoints.enumerate().reverse() {
+            if (point==num) {
+                _comePoints.removeAtIndex(i)
+            }
+        }
+        
+    }
+    
+    func clearDontComePoint(point:Int) {
+        
+        for (i,num) in _dontComePoints.enumerate().reverse() {
+            if (point==num) {
+                _dontComePoints.removeAtIndex(i)
+            }
+        }
+        
     }
     
     init(bankroll: Double, minBet: Double, minSmallBet: Double) {

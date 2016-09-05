@@ -16,6 +16,7 @@
 		636C25961D771C3700C13898 /* DecisionMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C25951D771C3700C13898 /* DecisionMaker.swift */; };
 		636C25981D77281200C13898 /* CrapsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636C25971D77281200C13898 /* CrapsEngine.swift */; };
 		6393E2DC1D77B38300526463 /* BettingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393E2DB1D77B38300526463 /* BettingOptions.swift */; };
+		63C8BAF61D7CDB0C0098FDA8 /* GameControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C8BAF51D7CDB0C0098FDA8 /* GameControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		636C25951D771C3700C13898 /* DecisionMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecisionMaker.swift; sourceTree = "<group>"; };
 		636C25971D77281200C13898 /* CrapsEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrapsEngine.swift; sourceTree = "<group>"; };
 		6393E2DB1D77B38300526463 /* BettingOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BettingOptions.swift; sourceTree = "<group>"; };
+		63C8BAF51D7CDB0C0098FDA8 /* GameControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				636C25951D771C3700C13898 /* DecisionMaker.swift */,
 				636C25971D77281200C13898 /* CrapsEngine.swift */,
 				6393E2DB1D77B38300526463 /* BettingOptions.swift */,
+				63C8BAF51D7CDB0C0098FDA8 /* GameControl.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6393E2DC1D77B38300526463 /* BettingOptions.swift in Sources */,
+				63C8BAF61D7CDB0C0098FDA8 /* GameControl.swift in Sources */,
 				636C25961D771C3700C13898 /* DecisionMaker.swift in Sources */,
 				636C25811D77187300C13898 /* ViewController.swift in Sources */,
 				636C25941D77190F00C13898 /* Player.swift in Sources */,
