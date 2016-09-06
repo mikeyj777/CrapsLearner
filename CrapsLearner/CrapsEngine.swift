@@ -120,7 +120,7 @@ class CrapsEngine {
                         
                     } else {
                         if (_point > 0 && !_pointJustSet) {
-                            let dummyPlayer = Player(bankroll: 0, minBet: 0, minSmallBet: 0)
+                            let dummyPlayer = Player(bankroll: 0, minBet: 0, minSmallBet: 0, sensitivity: 1)
                             checkAgainstPossiblePoint(dummyPlayer, point: _point, key:key)
                         } else {
                             if (_rollVal != 7) {

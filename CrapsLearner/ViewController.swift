@@ -22,9 +22,11 @@ class ViewController: UIViewController {
 
     @IBAction func btnGo(sender: AnyObject) {
         
-        let numPlayers:Int = Int(txtPlayers.text!)!
-        
         let bankroll:Double = Double(txtBankroll.text!)!
+
+        /*
+         
+        let numPlayers:Int = Int(txtPlayers.text!)!
         
         let minBet:Double = Double(txtMinBet.text!)!
         
@@ -32,13 +34,66 @@ class ViewController: UIViewController {
         
         let sensitivity:Double = Double(sliderSensitivity.value)
         
+        */
         
+        var sensVary:Double = 0.01
         
-        let gc = GameControl(numPlayers: numPlayers, bankroll: bankroll, minBet: minBet, minSmallBet: minSmallBet, sensitivity: sensitivity)
+        var gc:GameControl
         
-        gc.playCraps()
+        var handsPlayedArray:[Double]
+        
+        while (sensVary <= 1000) {
+            
+            var minBetVary = 0.001 * bankroll
+            while (minBetVary <= bankroll) {
+                
+                var minSmallBetVary = 0.0001 * bankroll
+                var count = 0
+                while (minSmallBetVary <= bankroll) {
+                    count += 1
+                    handsPlayedArray = [Double]()
+                    
+                    gc = GameControl(numPlayers: 1, bankroll: bankroll, minBet: minBetVary, minSmallBet: minSmallBetVary, sensitivity: sensVary)
+                    
+                    gc.playCraps()
+                    
+                    if gc.learnings.count > 100 {
+                        for learning in gc.learnings {
+                            
+                            handsPlayedArray.append(learning["hands played"]!)
+                            
+                        }
+                        
+                        let statCalcs = StatCalcs()
+                        
+                        let mMean:Double = statCalcs.arrMean(handsPlayedArray)
+                        
+                        let sSdev:Double = statCalcs.stndDev(handsPlayedArray)
+                        
+                        let passingRatio:Double =  sSdev / mMean
+                        
+                        if (passingRatio < 0.01) {
+                            
+                            minSmallBetVary += 0.0001 * bankroll
+                            
+                        }
+
+                    }
+                    
+                    
+                    
+                    
+                }
+                minBetVary += 0.001 * bankroll
+            }
+            
+            sensVary += 0.01
+        }
         
     }
+    
+    
+    
     
 }
 
