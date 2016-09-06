@@ -9,19 +9,33 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     
-        GameControl().playCraps()
+    @IBOutlet var txtPlayers: UITextField!
+    
+    @IBOutlet var txtBankroll: UITextField!
+    
+    @IBOutlet var txtMinBet: UITextField!
+
+    @IBOutlet var txtMinSmallBet: UITextField!
+    
+    @IBOutlet var sliderSensitivity: UISlider!
+
+    @IBAction func btnGo(sender: AnyObject) {
+        
+        let numPlayers = Int(txtPlayers.text!)!
+        
+        let bankroll = Double(txtBankroll.text!)!
+        
+        let minBet:Double = Double(txtMinBet.text!)!
+        
+        let minSmallBet:Double = Double(txtMinSmallBet.text!)!
+        
+        let sensitivity:Double = Double(sliderSensitivity.value)
+        
+        let gc = GameControl(numPlayers: numPlayers, bankroll: bankroll, minBet: minBet, minSmallBet: minSmallBet, sensitivity: sensitivity)
+        
+        gc.playCraps()
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 

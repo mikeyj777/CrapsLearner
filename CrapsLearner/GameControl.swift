@@ -10,39 +10,42 @@ import Foundation
 
 class GameControl {
     
-    var _players = [Player]()
+    private var _crapsEngine:CrapsEngine
     
-    var _numPlayers = 5
+    private var _decisionMaker:DecisionMaker
     
-    init() {
+    private var _players = [Player]()
+    
+    init(numPlayers: Int, bankroll: Double, minBet: Double, minSmallBet: Double, sensitivity: Double) {
         
         //instantiate players
-        let player = Player(bankroll: 5000, minBet: 5, minSmallBet: 1)
+        let player = Player(bankroll: bankroll, minBet: minBet, minSmallBet: minSmallBet)
         
-        for _ in 1..._numPlayers {
+        for _ in 1...numPlayers {
             _players.append(player)
         }
+        
+        _crapsEngine = CrapsEngine(players: _players)
+        
+        _decisionMaker = DecisionMaker(sensitivity: 1, betMultiplier: 1, oddsMultiplier: 3, minRollsToMakeDecisions: 5)
         
     }
     
     func playCraps() {
-        let crapsEngine = CrapsEngine(players: _players)
-        
-        let decisionMaker = DecisionMaker(sensitivity: 1, betMultiplier: 1, oddsMultiplier: 3, minRollsToMakeDecisions: 5)
         
         while (_players.count > 0) {
             
             //roll
-            crapsEngine.diceRoll()
+            _crapsEngine.diceRoll()
             
             //calculate outcomes
-            _players = crapsEngine.consequences()
+            _players = _crapsEngine.consequences()
             
             //adjust bets for players
             
             for player in _players {
-                player.payouts(crapsEngine.outcomes)
-                decisionMaker.setRatioAndReact(player, rollVal: crapsEngine.rollVal)
+                player.payouts(_crapsEngine.outcomes)
+                _decisionMaker.setRatioAndReact(player, rollVal: _crapsEngine.rollVal)
             }
             
             for (i, player) in _players.enumerate().reverse() {

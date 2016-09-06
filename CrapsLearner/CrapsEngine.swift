@@ -123,30 +123,6 @@ class CrapsEngine {
                 otherSevenActivities()
             }
             
-            /*
-             _bets=["pass line": 0,
-             "pass line odds": 0,
-             "come": 0,
-             "come odds": 0,
-             "don't pass": 0,
-             "don't pass odds": 0,
-             "don't come": 0,
-             "don't come odds": 0,
-             "craps": 0,
-             "eleven": 0,
-             "seven": 0,
-             "hard ways 4": 0,
-             "hard ways 6": 0,
-             "hard ways 8": 0,
-             "hard ways 10": 0,
-             "buy 4": 0,
-             "buy 5": 0,
-             "buy 6": 0,
-             "buy 8": 0,
-             "buy 9": 0,
-             "buy 10": 0]
-             */
-            
             break
         default:
             break
@@ -232,45 +208,53 @@ class CrapsEngine {
     
     func checkHardWaysAndBuys() {
         
+        
+        
         for i in 4...10 {
             
             if (_rollVal == i) && (_rollVal != 7) {
                 
                 if (_dice[0] == _dice[1]) {
-                    _outcomes["hard ways " + String(i)] = 1
+                    _outcomes["hard ways \(String(i))"] = 1
+                    
+                    var multiplier:Double = 1
+                    
+                    switch _rollVal {
+                    case 4:
+                        
+                        multiplier = 7
+                        break
+                    case 6:
+                        
+                        multiplier = 9
+                        break
+                    case 8:
+                        
+                        multiplier = 9
+                        break
+                    case 10:
+                        
+                        multiplier = 7
+                        break
+                    default:
+                        break
+                        
+                    }
+                    
+                    _outcomes["hard ways \(String())"]! *= multiplier
+                    
                 }
                 
-                _outcomes["buy " + String(i)] = 1
+                _outcomes["buy \(String(i))"] = 1
                 
             }
-            
-            var multiplier:Double = 1
-            
-            switch _rollVal {
-            case 4:
-                
-                multiplier = 7
-                break
-            case 6:
-                
-                multiplier = 9
-                break
-            case 8:
-                
-                multiplier = 9
-                break
-            case 10:
-                
-                multiplier = 7
-                break
-            default:
-                break
-                
-            }
-            
-            _outcomes["hard ways " + String(i)]! *= multiplier
             
         }
+        
+        
+        
+        
+        
         
     }
 }
