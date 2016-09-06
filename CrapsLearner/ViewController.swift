@@ -22,9 +22,9 @@ class ViewController: UIViewController {
 
     @IBAction func btnGo(sender: AnyObject) {
         
-        let numPlayers = Int(txtPlayers.text!)!
+        let numPlayers:Int = Int(txtPlayers.text!)!
         
-        let bankroll = Double(txtBankroll.text!)!
+        let bankroll:Double = Double(txtBankroll.text!)!
         
         let minBet:Double = Double(txtMinBet.text!)!
         
@@ -32,10 +32,13 @@ class ViewController: UIViewController {
         
         let sensitivity:Double = Double(sliderSensitivity.value)
         
+        
+        
         let gc = GameControl(numPlayers: numPlayers, bankroll: bankroll, minBet: minBet, minSmallBet: minSmallBet, sensitivity: sensitivity)
         
         gc.playCraps()
         
     }
+    
 }
 

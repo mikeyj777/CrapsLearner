@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="gwb-Rn-e4X">
-                                <rect key="frame" x="140" y="103" width="320" height="395"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="bottom" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="gwb-Rn-e4X">
+                                <rect key="frame" x="140" y="50" width="320" height="395"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="R5a-ff-Iwk">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
@@ -111,7 +111,7 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="lCt-oW-YYL">
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="lCt-oW-YYL">
                                         <rect key="frame" x="0.0" y="250" width="320" height="145"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sensitivity to Seven Counting" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zzw-19-86l">
@@ -146,6 +146,27 @@
                                                     <action selector="btnGo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ym3-xo-Oeq"/>
                                                 </connections>
                                             </button>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="21" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hands Played Before Going Broke" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QS-ZU-vPg">
+                                                <rect key="frame" x="31" y="156" width="258" height="0.0"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="258" id="ohY-zx-HCP"/>
+                                                    <constraint firstAttribute="height" constant="21" id="xuY-Uc-24y"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Value" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pjc-RY-d7F">
+                                                <rect key="frame" x="120" y="156" width="80" height="0.0"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="7vi-TK-OvF"/>
+                                                    <constraint firstAttribute="height" constant="40" id="GnH-bk-S8x"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="bok-gS-poc"/>
+                                                    <constraint firstAttribute="width" constant="80" id="phu-cJ-1Jl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="hMZ-BV-Gre" firstAttribute="width" secondItem="Zzw-19-86l" secondAttribute="width" id="NTL-Ur-sxG"/>

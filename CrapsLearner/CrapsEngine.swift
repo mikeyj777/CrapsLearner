@@ -29,6 +29,8 @@ class CrapsEngine {
     
     private var _players:[Player]
     
+    private var _pointJustSet = false
+    
     var rollVal:Int {
         return _rollVal
     }
@@ -50,6 +52,9 @@ class CrapsEngine {
         for diceVal in _dice {
             _rollVal += diceVal
         }
+        
+        _pointJustSet = false
+        
     }
     
     func consequences() -> [Player]{
@@ -90,6 +95,11 @@ class CrapsEngine {
                                 
                                 for point in player.comePoints {
                                     checkAgainstPossiblePoint(player, point:point, key: key)
+                                    
+                                    if (player.comePoints.count == 0) {
+                                        break
+                                    }
+                                    
                                 }
                             }
                             
@@ -97,6 +107,11 @@ class CrapsEngine {
                                 
                                 for point in player.dontComePoints {
                                     checkAgainstPossiblePoint(player, point:point, key: key)
+                                    
+                                    if (player.dontComePoints.count == 0) {
+                                        break
+                                    }
+                                    
                                 }
                             }
                         }
@@ -104,13 +119,14 @@ class CrapsEngine {
                         
                         
                     } else {
-                        if (_point > 0) {
+                        if (_point > 0 && !_pointJustSet) {
                             let dummyPlayer = Player(bankroll: 0, minBet: 0, minSmallBet: 0)
                             checkAgainstPossiblePoint(dummyPlayer, point: _point, key:key)
                         } else {
                             if (_rollVal != 7) {
                                 _point = _rollVal
                                 _onOff = true
+                                _pointJustSet = true
                             }
                         }
                         
@@ -134,6 +150,11 @@ class CrapsEngine {
     func checkAgainstPossiblePoint(player:Player, point: Int, key:String) {
         
         if ((_rollVal == 7) || (_rollVal == point)) {
+            
+            if (key.rangeOfString("pass") != nil) {
+                _onOff = false
+                _point = 0
+            }
             
             if (key.rangeOfString("don't") != nil) {
                 _outcomes[key] = _rollVal == 7 ? 1 : -1
@@ -171,9 +192,6 @@ class CrapsEngine {
                     } else {
                         player.clearDontComePoints()
                     }
-                } else {
-                    _point = 0
-                    _onOff = false
                 }
                 
             } else {
@@ -185,6 +203,7 @@ class CrapsEngine {
                 }
                 
             }
+            
         }
         
 
@@ -241,7 +260,7 @@ class CrapsEngine {
                         
                     }
                     
-                    _outcomes["hard ways \(String())"]! *= multiplier
+                    _outcomes["hard ways \(String(i))"]! *= multiplier
                     
                 }
                 

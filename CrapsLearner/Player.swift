@@ -22,6 +22,10 @@ class Player {
     
     private var _comePoints = [Int]()
     
+    private var _handsPlayed = 0
+    
+    private var _rowForLearning = [String:Double]()
+    
     var minBet:Double {
         return _minBet
     }
@@ -44,6 +48,14 @@ class Player {
     
     var comePoints:[Int] {
         return _comePoints
+    }
+    
+    var handsPlayed:Int {
+        return _handsPlayed
+    }
+    
+    var rowForLearning:[String:Double] {
+        return _rowForLearning
     }
     
     func addComePoint(point:Int) {
@@ -102,10 +114,15 @@ class Player {
         
     }
     
-    init(bankroll: Double, minBet: Double, minSmallBet: Double) {
+    init(bankroll: Double, minBet: Double, minSmallBet: Double, sensitivity: Double) {
         _bankroll = bankroll
         _minBet = minBet
         _minSmallBet = minSmallBet
+        
+        _rowForLearning = ["min bet ratio":minBet/bankroll,
+                           "min small bet ratio":minSmallBet/bankroll,
+                           "sensitivity": sensitivity,
+                           "hands played": 0]
         
         _bets = BettingOptions().bets
         
@@ -120,6 +137,10 @@ class Player {
     }
     
     func payouts(outcomes:[String:Double]) {
+        
+        _handsPlayed += 1
+        
+        _rowForLearning["hands played"] = Double(_handsPlayed)
         
         for (key,value) in outcomes {
             
